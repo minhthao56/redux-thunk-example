@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { exampleAction } from "./redux/actions";
+
+import "./App.css";
 
 function App() {
+  const CallAip = useSelector((state) => state.CallAip);
+  const dispatch = useDispatch();
+
+  console.log(CallAip);
+  useEffect(() => {
+    dispatch(exampleAction());
+  }, [dispatch]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Call api</h1>
+      <h2>{CallAip.node_id}</h2>
     </div>
   );
 }
